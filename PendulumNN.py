@@ -40,8 +40,6 @@ def prepare_training_data(set_size):
     x_train = torch.rand(set_size, 3)
     y_train = torch.empty(set_size)
     for i in range(0, set_size):
-        #angle = PI * i / set_size
-        #x_train[i, 0] = angle / PI
         angle = x_train[i, 0] * PI
         dx = x_train[i, 1]
         dy = x_train[i, 2]
@@ -78,7 +76,7 @@ y_valid = y_valid.to(device)
 # ax.scatter(PI * x_train, PI * y_train)
 # fig.savefig("fun.png")
 
-train = False
+train = True
 path = "PendNet.dat"
 if train:
     # train the NN

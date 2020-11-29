@@ -41,10 +41,10 @@ for i in range(0, steps - 1):
     theta0 = math.atan2(y[i], x[i])    
     theta1 = compute_new_angle_simple(theta0, dt * xdot[i], dt * ydot[i])
     args = torch.tensor([theta0 / PI, dt * xdot[i], dt * ydot[i]], dtype=torch.float)
-    theta1net = net(args) * PI - PI / 2
-    #print(dt * xdot[i], dt * ydot[i])
-    print(theta1, theta1net.item() + theta0)
-    #theta1 = theta0 + theta1net;
+    out = net(args)
+    theta1net = theta0 + PI * (out - 0.5)
+    print(theta1, theta1net.item())    
+    theta1 = theta1net;
     x[i+1] = l * math.cos(theta1)
     y[i+1] = l * math.sin(theta1)
     # x2, y2 = project(x1, y1)
